@@ -6,16 +6,10 @@
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
-            text-align: center;
             font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
             overflow: hidden;
-        }
-
-        .content {
-            padding-top: 80px;
-            position: relative;
-            z-index: 2;
+            text-align: center;
         }
 
         h1 {
@@ -25,37 +19,34 @@
 
         p {
             font-size: 20px;
-            color: #333;
             width: 70%;
             margin: 15px auto;
             line-height: 1.7;
         }
 
-        h2 {
-            color: #800040;
-            margin-top: 30px;
-        }
-
         button {
             padding: 15px 30px;
             font-size: 18px;
-            margin: 30px 15px;
+            margin: 25px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
         }
 
-        .yes {
-            background-color: #ff1a75;
-            color: white;
+        .yes { background-color: #ff1a75; color: white; }
+        .no { background-color: grey; color: white; position: absolute; }
+        .start { background-color: #b30059; color: white; }
+
+        .screen {
+            display: none;
+            padding-top: 100px;
+            position: relative;
+            z-index: 2;
         }
 
-        .no {
-            background-color: grey;
-            color: white;
-            position: absolute;
-        }
+        .active { display: block; }
 
+        /* Falling Hearts */
         .heart {
             position: fixed;
             top: -10px;
@@ -68,6 +59,7 @@
             100% { transform: translateY(100vh); }
         }
 
+        /* Fireworks */
         .firework {
             position: fixed;
             width: 6px;
@@ -81,71 +73,70 @@
             0% { transform: scale(0); opacity: 1; }
             100% { transform: scale(20); opacity: 0; }
         }
-
-        .final-message {
-            display: none;
-            padding-top: 120px;
-        }
     </style>
 </head>
 
 <body>
 
-<div class="content" id="proposalContent">
-
-<h1>Dr. Yashaswini 💍</h1>
-
-<p>
-March 6th is not just a date.
-It is the day my life found its favorite person.
-</p>
-
-<p>
-You walked into my world with your caring heart,
-your dedication as a doctor,
-and a smile that heals everything around you.
-</p>
-
-<p>
-You may be short in height,
-but you stand tallest in my world.
-Your presence fills my life completely.
-</p>
-
-<p>
-With you, ordinary days feel magical.
-Simple talks feel special.
-And my future feels brighter.
-</p>
-
-<p>
-I don’t just want memories with you.
-I want a lifetime of them.
-More March 6ths.
-More laughter.
-More love.
-More us.
-</p>
-
-<h2>Will you choose me for forever? ❤️</h2>
-
-<button class="yes" onclick="acceptProposal()">Yes ❤️</button>
-<button class="no" onmouseover="moveButton()">No 😜</button>
-
+<!-- Opening Screen -->
+<div id="opening" class="screen active">
+    <h1>Hi My Dear Yashaswini ❤️</h1>
+    <p>
+        Before you scroll further…
+        I want you to know something important.
+    </p>
+    <p>
+        This isn’t just a webpage.
+        It’s my heart, written in code.
+        Please select your choice wisely darlo
+    </p>
+    <button class="start" onclick="goToProposal()">Begin ❤️</button>
 </div>
 
-<div class="final-message" id="finalMessage">
-    <h1>hooorayyy You Said YES! 💍❤️</h1>
+<!-- Proposal Screen -->
+<div id="proposal" class="screen">
+    <h1>March 6th 💍</h1>
+    <p>
+        The day my life found its favorite person.
+    </p>
+    <p>
+        You may be short in height,
+        but you stand tallest in my world.
+    </p>
+    <p>
+        With you, life feels lighter,
+        happier,
+        and full of meaning.
+    </p>
+    <p>
+        I don’t just want memories.
+        I want a lifetime with you.
+    </p>
+    <h2>Will you choose me for forever? ❤️</h2>
+    <button class="yes" onclick="acceptProposal()">Yes ❤️</button>
+    <button class="no" onmouseover="moveButton()">No 😜</button>
+</div>
+
+<!-- Final Screen -->
+<div id="final" class="screen">
+    <h1>Hoorayy You Said YES! 💍❤️</h1>
     <p>
         This is the beginning of our forever.
-        A lifetime of love.
-        A lifetime of standing beside each other.
-        A lifetime of choosing each other every single day.
+        More March 6ths.
+        More laughter.
+        More love.
+        More us.
+        More memories.
     </p>
     <h2>I Love You, Dr. Yashaswini ❤️</h2>
 </div>
 
 <script>
+function goToProposal() {
+    document.getElementById("opening").classList.remove("active");
+    document.getElementById("proposal").classList.add("active");
+}
+
 function moveButton() {
     const button = document.querySelector(".no");
     button.style.top = Math.random() * (window.innerHeight - 50) + "px";
@@ -153,8 +144,8 @@ function moveButton() {
 }
 
 function acceptProposal() {
-    document.getElementById("proposalContent").style.display = "none";
-    document.getElementById("finalMessage").style.display = "block";
+    document.getElementById("proposal").classList.remove("active");
+    document.getElementById("final").classList.add("active");
     startFireworks();
 }
 
@@ -166,11 +157,8 @@ function createHeart() {
     heart.style.animationDuration = Math.random() * 3 + 2 + "s";
     document.body.appendChild(heart);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
+    setTimeout(() => { heart.remove(); }, 5000);
 }
-
 setInterval(createHeart, 300);
 
 function startFireworks() {
@@ -181,9 +169,7 @@ function startFireworks() {
         firework.style.top = Math.random() * 100 + "vh";
         document.body.appendChild(firework);
 
-        setTimeout(() => {
-            firework.remove();
-        }, 1000);
+        setTimeout(() => { firework.remove(); }, 1000);
     }, 300);
 }
 </script>
