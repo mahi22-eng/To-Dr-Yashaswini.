@@ -1,146 +1,167 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For Dr. Yashaswini ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
-            overflow: hidden;
-            text-align: center;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        h1 {
-            font-size: 42px;
-            color: #b30059;
-        }
+<title>For Dr. Yashaswini ❤️</title>
 
-        p {
-            font-size: 20px;
-            width: 70%;
-            margin: 15px auto;
-            line-height: 1.7;
-        }
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+    text-align: center;
+    overflow-x: hidden;
+}
 
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            margin: 25px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
+.screen {
+    display: none;
+    padding: 60px 20px;
+    min-height: 100vh;
+}
 
-        .yes { background-color: #ff1a75; color: white; }
-        .no { background-color: grey; color: white; position: absolute; }
-        .start { background-color: #b30059; color: white; }
+.active {
+    display: block;
+}
 
-        .screen {
-            display: none;
-            padding-top: 100px;
-            position: relative;
-            z-index: 2;
-        }
+h1 {
+    font-size: 28px;
+    color: #b30059;
+}
 
-        .active { display: block; }
+h2 {
+    color: #800040;
+}
 
-        /* Falling Hearts */
-        .heart {
-            position: fixed;
-            top: -10px;
-            font-size: 20px;
-            animation: fall linear infinite;
-        }
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 15px auto;
+}
 
-        @keyframes fall {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
-        }
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    margin: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
-        /* Fireworks */
-        .firework {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: gold;
-            animation: explode 1s ease-out forwards;
-        }
+.yes {
+    background-color: #ff1a75;
+    color: white;
+}
 
-        @keyframes explode {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(20); opacity: 0; }
-        }
-    </style>
+.no {
+    background-color: grey;
+    color: white;
+    position: relative;
+}
+
+/* Falling Hearts */
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 18px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+/* Fireworks */
+.firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: gold;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(15); opacity: 0; }
+}
+
+</style>
 </head>
 
 <body>
 
 <!-- Opening Screen -->
 <div id="opening" class="screen active">
-    <h1>Hi My Dear Yashaswini ❤️</h1>
+    <h1>Hi Dr. Yashaswini ❤️</h1>
     <p>
-        Before you scroll further…
-        I want you to know something important.
+        This is not just a webpage.
+        It’s my heart written in code.
     </p>
     <p>
-        This isn’t just a webpage.
-        It’s my heart, written in code.
-        Please select your choice wisely darlo
+        Before you continue,
+        I want you to read this slowly.
     </p>
-    <button class="start" onclick="goToProposal()">Begin ❤️</button>
+    <button onclick="goToProposal()">Begin ❤️</button>
 </div>
 
 <!-- Proposal Screen -->
 <div id="proposal" class="screen">
     <h1>March 6th 💍</h1>
+
     <p>
         The day my life found its favorite person.
     </p>
+
     <p>
         You may be short in height,
         but you stand tallest in my world.
     </p>
+
     <p>
-        With you, life feels lighter,
-        happier,
-        and full of meaning.
+        With you, life feels peaceful,
+        meaningful,
+        and full of love.
     </p>
+
     <p>
         I don’t just want memories.
         I want a lifetime with you.
     </p>
+
     <h2>Will you choose me for forever? ❤️</h2>
+
     <button class="yes" onclick="acceptProposal()">Yes ❤️</button>
-    <button class="no" onmouseover="moveButton()">No 😜</button>
+    <button class="no" onclick="moveButton()">No 😜</button>
 </div>
 
 <!-- Final Screen -->
 <div id="final" class="screen">
     <h1>Hoorayy You Said YES! 💍❤️</h1>
+
     <p>
         This is the beginning of our forever.
         More March 6ths.
         More laughter.
         More love.
         More us.
-        More memories.
     </p>
+
     <h2>I Love You, Dr. Yashaswini ❤️</h2>
 </div>
 
 <script>
+
 function goToProposal() {
     document.getElementById("opening").classList.remove("active");
     document.getElementById("proposal").classList.add("active");
 }
 
 function moveButton() {
-    const button = document.querySelector(".no");
-    button.style.top = Math.random() * (window.innerHeight - 50) + "px";
-    button.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    alert("Nice try 😜 but the answer has to be YES ❤️");
 }
 
 function acceptProposal() {
@@ -159,7 +180,7 @@ function createHeart() {
 
     setTimeout(() => { heart.remove(); }, 5000);
 }
-setInterval(createHeart, 300);
+setInterval(createHeart, 400);
 
 function startFireworks() {
     setInterval(() => {
@@ -172,6 +193,7 @@ function startFireworks() {
         setTimeout(() => { firework.remove(); }, 1000);
     }, 300);
 }
+
 </script>
 
 </body>
