@@ -17,20 +17,19 @@ body {
     display: none;
     min-height: 100vh;
     padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.active {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.active {
-    display: flex;
-}
-
 h1 {
     font-size: 28px;
     color: #b30059;
-    margin-bottom: 15px;
 }
 
 h2 {
@@ -51,6 +50,7 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .yes {
@@ -60,6 +60,11 @@ button {
 
 .no {
     background-color: grey;
+    color: white;
+}
+
+.start {
+    background-color: #b30059;
     color: white;
 }
 
@@ -77,49 +82,36 @@ button {
     100% { transform: translateY(100vh); }
 }
 
-/* Fireworks */
-.firework {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: gold;
-    animation: explode 1s ease-out forwards;
-    pointer-events: none;
-}
-
-@keyframes explode {
-    0% { transform: scale(0); opacity: 1; }
-    100% { transform: scale(15); opacity: 0; }
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- Opening -->
+<!-- Opening Screen -->
 <div id="opening" class="screen active">
     <h1>Hi My Dear Yashaswini ❤️</h1>
     <p>This isn’t just a webpage.</p>
-    <p>It’s my heart, written in code.</p>
-    <button onclick="goToProposal()">Begin ❤️</button>
+    <p>It’s my heart written in code.</p>
+    <button class="start" onclick="goToProposal()">Begin ❤️</button>
 </div>
 
-<!-- Proposal -->
+<!-- Proposal Screen -->
 <div id="proposal" class="screen">
     <h1>March 6th 💍</h1>
     <p>The day my life found its favorite person.</p>
     <p>You may be short in height, but you stand tallest in my world.</p>
     <p>I don’t just want memories. I want forever with you.</p>
+
     <h2>Will you choose me for forever? ❤️</h2>
+
     <button class="yes" onclick="acceptProposal()">Yes ❤️</button>
-    <button class="no" onclick="noClick()">No 😜</button>
+
+    <button class="no" onclick="noAttempt()">No 😜</button>
 </div>
 
-<!-- Final -->
+<!-- Final Screen -->
 <div id="final" class="screen">
-    <h1>Hoorayy You Said YES! 💍❤️</h1>
+    <h1>She Said YES! 💍❤️</h1>
     <p>This is the beginning of our forever.</p>
     <p>More March 6ths. More love. More us.</p>
     <h2>I Love You ❤️</h2>
@@ -130,19 +122,21 @@ button {
 function goToProposal() {
     document.getElementById("opening").classList.remove("active");
     document.getElementById("proposal").classList.add("active");
-}
-
-function noClick() {
-    alert("Nice try 😜 but the answer has to be YES ❤️");
+    window.scrollTo(0, 0);
 }
 
 function acceptProposal() {
     document.getElementById("proposal").classList.remove("active");
     document.getElementById("final").classList.add("active");
-    startFireworks();
+    window.scrollTo(0, 0);
 }
 
-/* Hearts */
+function noAttempt() {
+    alert("Nice try 😏 but you cannot choose this option. The only valid answer is YES ❤️");
+    window.scrollTo(0, 0);
+}
+
+/* Romantic falling hearts */
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
@@ -152,19 +146,8 @@ function createHeart() {
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 5000);
 }
-setInterval(createHeart, 500);
 
-/* Fireworks */
-function startFireworks() {
-    setInterval(() => {
-        const firework = document.createElement("div");
-        firework.classList.add("firework");
-        firework.style.left = Math.random() * 100 + "vw";
-        firework.style.top = Math.random() * 100 + "vh";
-        document.body.appendChild(firework);
-        setTimeout(() => firework.remove(), 1000);
-    }, 300);
-}
+setInterval(createHeart, 500);
 
 </script>
 
