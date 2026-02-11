@@ -2,13 +2,11 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>For Dr. Yashaswini ❤️</title>
 
 <style>
 body {
     margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
     text-align: center;
@@ -17,17 +15,22 @@ body {
 
 .screen {
     display: none;
-    padding: 60px 20px;
     min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .active {
-    display: block;
+    display: flex;
 }
 
 h1 {
     font-size: 28px;
     color: #b30059;
+    margin-bottom: 15px;
 }
 
 h2 {
@@ -36,9 +39,9 @@ h2 {
 
 p {
     font-size: 16px;
-    line-height: 1.6;
     max-width: 500px;
-    margin: 15px auto;
+    line-height: 1.6;
+    margin: 10px 0;
 }
 
 button {
@@ -58,7 +61,6 @@ button {
 .no {
     background-color: grey;
     color: white;
-    position: relative;
 }
 
 /* Falling Hearts */
@@ -67,6 +69,7 @@ button {
     top: -10px;
     font-size: 18px;
     animation: fall linear infinite;
+    pointer-events: none;
 }
 
 @keyframes fall {
@@ -82,6 +85,7 @@ button {
     border-radius: 50%;
     background: gold;
     animation: explode 1s ease-out forwards;
+    pointer-events: none;
 }
 
 @keyframes explode {
@@ -94,63 +98,31 @@ button {
 
 <body>
 
-<!-- Opening Screen -->
+<!-- Opening -->
 <div id="opening" class="screen active">
-    <h1>Hi Dr. Yashaswini ❤️</h1>
-    <p>
-        This is not just a webpage.
-        It’s my heart written in code.
-    </p>
-    <p>
-        Before you continue,
-        I want you to read this slowly.
-    </p>
+    <h1>Hi My Dear Yashaswini ❤️</h1>
+    <p>This isn’t just a webpage.</p>
+    <p>It’s my heart, written in code.</p>
     <button onclick="goToProposal()">Begin ❤️</button>
 </div>
 
-<!-- Proposal Screen -->
+<!-- Proposal -->
 <div id="proposal" class="screen">
     <h1>March 6th 💍</h1>
-
-    <p>
-        The day my life found its favorite person.
-    </p>
-
-    <p>
-        You may be short in height,
-        but you stand tallest in my world.
-    </p>
-
-    <p>
-        With you, life feels peaceful,
-        meaningful,
-        and full of love.
-    </p>
-
-    <p>
-        I don’t just want memories.
-        I want a lifetime with you.
-    </p>
-
+    <p>The day my life found its favorite person.</p>
+    <p>You may be short in height, but you stand tallest in my world.</p>
+    <p>I don’t just want memories. I want forever with you.</p>
     <h2>Will you choose me for forever? ❤️</h2>
-
     <button class="yes" onclick="acceptProposal()">Yes ❤️</button>
-    <button class="no" onclick="moveButton()">No 😜</button>
+    <button class="no" onclick="noClick()">No 😜</button>
 </div>
 
-<!-- Final Screen -->
+<!-- Final -->
 <div id="final" class="screen">
     <h1>Hoorayy You Said YES! 💍❤️</h1>
-
-    <p>
-        This is the beginning of our forever.
-        More March 6ths.
-        More laughter.
-        More love.
-        More us.
-    </p>
-
-    <h2>I Love You, Dr. Yashaswini ❤️</h2>
+    <p>This is the beginning of our forever.</p>
+    <p>More March 6ths. More love. More us.</p>
+    <h2>I Love You ❤️</h2>
 </div>
 
 <script>
@@ -160,7 +132,7 @@ function goToProposal() {
     document.getElementById("proposal").classList.add("active");
 }
 
-function moveButton() {
+function noClick() {
     alert("Nice try 😜 but the answer has to be YES ❤️");
 }
 
@@ -170,6 +142,7 @@ function acceptProposal() {
     startFireworks();
 }
 
+/* Hearts */
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
@@ -177,11 +150,11 @@ function createHeart() {
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = Math.random() * 3 + 2 + "s";
     document.body.appendChild(heart);
-
-    setTimeout(() => { heart.remove(); }, 5000);
+    setTimeout(() => heart.remove(), 5000);
 }
-setInterval(createHeart, 400);
+setInterval(createHeart, 500);
 
+/* Fireworks */
 function startFireworks() {
     setInterval(() => {
         const firework = document.createElement("div");
@@ -189,8 +162,7 @@ function startFireworks() {
         firework.style.left = Math.random() * 100 + "vw";
         firework.style.top = Math.random() * 100 + "vh";
         document.body.appendChild(firework);
-
-        setTimeout(() => { firework.remove(); }, 1000);
+        setTimeout(() => firework.remove(), 1000);
     }, 300);
 }
 
